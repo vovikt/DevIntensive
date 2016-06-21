@@ -1,0 +1,24 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- font size -->
+    <dimen name="font_larger_22">22sp</dimen>
+    <dimen name="font_large_18">18sp</dimen>
+    <dimen name="font_normal_15">15sp</dimen>
+    <dimen name="font_small_12">12sp</dimen>
+
+    <!-- typical spicing betwin two view -->
+    <dimen name="spicing_huge_40">40dp</dimen>
+    <dimen name="spicing_large_24">24dp</dimen>
+    <dimen name="spicing_normal_14">14dp</dimen>
+    <dimen name="spicing_small_10">10dp</dimen>
+    <dimen name="spicing_tiny_4">4dp</dimen>
+
+    <!-- typical sizes of view -->
+    <dimen name="button_height_tall_60">60dp</dimen>
+    <dimen name="button_height_normall_40">40dp</dimen>
+    <dimen name="button_height_short_32">32dp</dimen>
+
+</resources>
