@@ -10,6 +10,7 @@
     <dimen name="font_small_12">12sp</dimen>
 
     <!-- typical spicing betwin two view -->
+    <dimen name="spicing_larger_72">72dp</dimen>
     <dimen name="spicing_huge_40">40dp</dimen>
     <dimen name="spicing_large_24">24dp</dimen>
     <dimen name="spicing_normal_14">14dp</dimen>
