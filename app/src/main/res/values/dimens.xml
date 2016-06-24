@@ -13,13 +13,19 @@
     <dimen name="spicing_larger_72">72dp</dimen>
     <dimen name="spicing_huge_40">40dp</dimen>
     <dimen name="spicing_large_24">24dp</dimen>
-    <dimen name="spicing_normal_14">14dp</dimen>
+    <dimen name="spicing_normal_16">16dp</dimen>
     <dimen name="spicing_small_10">10dp</dimen>
     <dimen name="spicing_tiny_4">4dp</dimen>
+    <dimen name="spicing_medium_32">32dp</dimen>
+    <dimen name="spicing_medial_24">24dp</dimen>
 
     <!-- typical sizes of view -->
     <dimen name="button_height_tall_60">60dp</dimen>
     <dimen name="button_height_normall_40">40dp</dimen>
     <dimen name="button_height_short_32">32dp</dimen>
+    <dimen name="size_small_24">24dp</dimen>
+    <dimen name="size_big_72">72dp</dimen>
+    <dimen name="line_size">1dp</dimen>
+
 
 </resources>
