@@ -44,7 +44,8 @@
             <View
                 android:layout_height="match_parent"
                 android:layout_width="@dimen/line_size"
-                android:background="@color/gray_light"></View>
+                android:background="@color/gray_light"
+                android:layout_margin="@dimen/spicing_small_10"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -73,7 +74,8 @@
             <View
                 android:layout_height="match_parent"
                 android:layout_width="@dimen/line_size"
-                android:background="@color/gray_light"></View>
+                android:background="@color/gray_light"
+                android:layout_margin="@dimen/spicing_small_10"/>
 
             <LinearLayout
                 android:layout_width="0dp"
