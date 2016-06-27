@@ -8,4 +8,37 @@
         <item name="colorAccent">@color/color_accent</item>
     </style>
 
+    <style name="icon">
+        <item name="android:layout_width">@dimen/size_small_24</item>
+        <item name="android:layout_height">@dimen/size_small_24</item>
+    </style>
+
+    <style name="icon.left" parent="icon">
+        <item name="android:gravity">top|left</item>
+        <item name="android:layout_marginTop">@dimen/spicing_medial_24</item>
+        <item name="android:layout_marginLeft">@dimen/spicing_normal_16</item>
+    </style>
+
+    <style name="icon.right" parent="icon">
+        <item name="android:gravity">top|right</item>
+        <item name="android:layout_marginTop">@dimen/spicing_medial_24</item>
+        <item name="android:layout_marginRight">@dimen/spicing_medium_32</item>
+    </style>
+    <style name="headerTextBottom">
+       <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/font_small_12</item>
+        <item name="android:layout_marginBottom">@dimen/spicing_small_10</item>
+    </style>
+    <style name="headerTextUp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/font_large_18</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/spicing_small_10</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>
