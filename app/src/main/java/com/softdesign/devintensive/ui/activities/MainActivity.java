@@ -80,7 +80,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setupToolbar();
         setupDrawer();
         loadUserInfoValue();
-        List<String> test = mDataManager.getPreferenceManager().loadUserProfileData();
 
 
     }
@@ -109,7 +108,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onPause() {
         super.onPause();
         Log.d(TAG, "onPause");
-        //saveUserInfoValue();
+        saveUserInfoValue();
     }
 
     @Override
