@@ -30,6 +30,7 @@ import java.util.List;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = ConstantManager.TAG_PREFIX + "Main Activity";
+    private DataManager mDataManager;
     private ImageView mCalling;
     private CoordinatorLayout mCoordinatorLayout;
     private Toolbar mToolbar;
@@ -37,9 +38,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private int mCurrentEditMode = 0;
     private FloatingActionButton mFab;
     private EditText mUserPhone, mUserMail, mUserVk, mUserGit, mUserBio;
-    private List<EditText> mUserInfo;
-    private List<EditText> mUserInfoView;
-    private DataManager mDataManager;
+    private List<EditText> mUserInfoViews;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,18 +53,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
         mFab = (FloatingActionButton) findViewById(R.id.fab);
         mFab.setOnClickListener(this);
+
         mUserPhone = (EditText) findViewById(R.id.phone_et);
         mUserMail = (EditText) findViewById(R.id.email_et);
         mUserVk = (EditText) findViewById(R.id.vk_et);
         mUserGit = (EditText) findViewById(R.id.github_et);
         mUserBio = (EditText) findViewById(R.id.about_et);
 
-        mUserInfo = new ArrayList<>();
-        mUserInfo.add(mUserPhone);
-        mUserInfo.add(mUserMail);
-        mUserInfo.add(mUserVk);
-        mUserInfo.add(mUserGit);
-        mUserInfo.add(mUserBio);
+        mUserInfoViews = new ArrayList<>();
+        mUserInfoViews.add(mUserPhone);
+        mUserInfoViews.add(mUserMail);
+        mUserInfoViews.add(mUserVk);
+        mUserInfoViews.add(mUserGit);
+        mUserInfoViews.add(mUserBio);
         mDataManager = DataManager.getInstance();
 
 
@@ -107,6 +109,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onPause() {
         super.onPause();
         Log.d(TAG, "onPause");
+        //saveUserInfoValue();
     }
 
     @Override
@@ -189,14 +192,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void changeEditMode(int mode){
         if (mode == 1){
             mFab.setImageResource(R.drawable.ic_check_black_24dp);
-            for (EditText userValue : mUserInfo) {
+            for (EditText userValue : mUserInfoViews) {
                 userValue.setEnabled(true);
                 userValue.setFocusable(true);
                 userValue.setFocusableInTouchMode(true);
             }
         }else{
             mFab.setImageResource(R.drawable.ic_create_black_24dp);
-            for (EditText userValue : mUserInfo) {
+            for (EditText userValue : mUserInfoViews) {
                 userValue.setEnabled(false);
                 userValue.setFocusable(false);
                 userValue.setFocusableInTouchMode(false);
@@ -208,17 +211,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void loadUserInfoValue(){
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
         for (int i = 0; i< userData.size(); i++){
-            mUserInfoView.get(i).setText(userData.get(i));
+            mUserInfoViews.get(i).setText(userData.get(i));
         }
 
     }
 
     private void saveUserInfoValue(){
         List<String> userData = new ArrayList<>();
-        for (EditText userFieldView: mUserInfoView){
+        for (EditText userFieldView: mUserInfoViews){
             userData.add(userFieldView.getText().toString());
-            mDataManager.getPreferenceManager().saveUserProfileData(userData);
         }
-
+        mDataManager.getPreferenceManager().saveUserProfileData(userData);
     }
 }
