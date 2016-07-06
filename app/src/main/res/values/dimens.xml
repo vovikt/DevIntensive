@@ -30,6 +30,8 @@
     <dimen name="spacing_small_8">8dp</dimen>
     <dimen name="profile_image_size">256dp</dimen>
     <dimen name="fab_right_space">8dp</dimen>
+    <dimen name="placeholder_photo_size_90">90dp</dimen>
+    <dimen name="spicing_small_8">8dp</dimen>
 
 
 </resources>

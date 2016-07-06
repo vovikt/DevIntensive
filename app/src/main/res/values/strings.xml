@@ -17,4 +17,18 @@
     <string name="rating">Рейтинг</string>
     <string name="num_lines">5</string>
     <string name="lines_nums">Написано строк кода</string>
+    <string name="user_profile_placeholder_image">Изменить фотографию пользователя</string>
+    <string name="user_profile_dialog_gallery">Загрузить из галереи</string>
+    <string name="user_profile_dialog_camera">Сделать снимок</string>
+    <string name="user_profile_dialog_cancel">Отмена</string>
+    <string name="user_profile_dialog_title">Изменить фотографию пользователя</string>
+    <string name="user_profile_shoose_message">Выберите фото</string>
+    <string name="in_tv">Войти</string>
+    <string name="e_mail_hint_et">E mail</string>
+    <string name="mail_et">user@mail.ru</string>
+    <string name="pass_et">Пароль</string>
+    <string name="in_btn_et">Войти</string>
+    <string name="rest_pass_tv">Забыли пароль?</string>
+    <string name="permission_message">Для коректной работы приложения необходимо дать требуемое разрешение</string>
+    <string name="allow_action">Разрешить</string>
 </resources>
