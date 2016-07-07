@@ -31,4 +31,6 @@
     <string name="rest_pass_tv">Забыли пароль?</string>
     <string name="permission_message">Для коректной работы приложения необходимо дать требуемое разрешение</string>
     <string name="allow_action">Разрешить</string>
+    <string name="wrong_login_pass">Неверный логин или пароль!</string>
+    <string name="rest_pass">Повспоминайте!!!</string>
 </resources>

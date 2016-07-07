@@ -48,29 +48,38 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.BindViews;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+
+public class MainActivity extends BaseActivity {
 
     private static final String TAG = ConstantManager.TAG_PREFIX + "Main Activity";
     private DataManager mDataManager;
-    private ImageView mCalling;
-    private ImageView mSendEmail;
-    private ImageView mVk;
-    private ImageView mGithub;
-    private CoordinatorLayout mCoordinatorLayout;
-    private Toolbar mToolbar;
-    private DrawerLayout mNavigationDrawer;
+    @BindView(R.id.main_coordinator_container)
+    CoordinatorLayout mCoordinatorLayout;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.navigation_drawer)
+    DrawerLayout mNavigationDrawer;
     private int mCurrentEditMode = 0;
-    private FloatingActionButton mFab;
-    private EditText mUserPhone, mUserMail, mUserVk, mUserGit, mUserBio;
-    private List<EditText> mUserInfoViews;
-    private RelativeLayout mProfilePlaceholder;
-    private CollapsingToolbarLayout mCollapsingToolbar;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
+    @BindViews({R.id.phone_et, R.id.email_et, R.id.vk_et, R.id.github_et,R.id.about_et})
+    List<EditText> mUserInfoViews;
+    @BindView(R.id.profile_placeholder)
+    RelativeLayout mProfilePlaceholder;
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout mCollapsingToolbar;
     private AppBarLayout.LayoutParams mAppBarParams = null;
-    private AppBarLayout mAppBarLayout;
+    @BindView(R.id.appbar_layout)
+    AppBarLayout mAppBarLayout;
     private File mPhotoFile = null;
     private Uri mSelectedImage = null;
-    private ImageView mProfileImage;
+    @BindView(R.id.user_photo)
+    ImageView mProfileImage;
 
 
     @Override
@@ -78,46 +87,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate");
-
-        mCalling = (ImageView) findViewById(R.id.call_img);
-        mCalling.setOnClickListener(this);
-
-        mSendEmail = (ImageView) findViewById(R.id.email_img);
-        mSendEmail.setOnClickListener(this);
-
-        mVk = (ImageView) findViewById(R.id.vk_img);
-        mVk.setOnClickListener(this);
-
-        mGithub = (ImageView) findViewById(R.id.github_img);
-        mGithub.setOnClickListener(this);
-
-        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_coordinator_container);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
-
-        mFab = (FloatingActionButton) findViewById(R.id.fab);
-        mFab.setOnClickListener(this);
-
-        mProfilePlaceholder = (RelativeLayout) findViewById(R.id.profile_placeholder);
-        mProfilePlaceholder.setOnClickListener(this);
-
-        mUserPhone = (EditText) findViewById(R.id.phone_et);
-        mUserMail = (EditText) findViewById(R.id.email_et);
-        mUserVk = (EditText) findViewById(R.id.vk_et);
-        mUserGit = (EditText) findViewById(R.id.github_et);
-        mUserBio = (EditText) findViewById(R.id.about_et);
-        mCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar_layout);
-
-        mUserInfoViews = new ArrayList<>();
-        mUserInfoViews.add(mUserPhone);
-        mUserInfoViews.add(mUserMail);
-        mUserInfoViews.add(mUserVk);
-        mUserInfoViews.add(mUserGit);
-        mUserInfoViews.add(mUserBio);
-
+        ButterKnife.bind(this);
         mDataManager = DataManager.getInstance();
-        mProfileImage = (ImageView) findViewById(R.id.user_photo);
 
         if (savedInstanceState == null) {
             // activity запускается впервые
@@ -183,37 +154,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Log.d(TAG, "onRestart");
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fab:
-                if (mCurrentEditMode == 0) {
-                    changeEditMode(1);
-                    mCurrentEditMode = 1;
-
-                } else {
-                    changeEditMode(0);
-                    mCurrentEditMode = 0;
-                }
-                break;
-            case R.id.profile_placeholder:
-                showDialog(ConstantManager.LOAD_PROFILE_PHOTO);
-                break;
-            case R.id.call_img:
-                phoneCall();
-                break;
-            case R.id.email_img:
-                sendEmail();
-                break;
-            case R.id.vk_img:
-                goVk();
-                break;
-            case R.id.github_img:
-                goGithub();
-                break;
-
-        }
-    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -429,15 +369,36 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Intent appSetingsIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + getPackageName()));
         startActivityForResult(appSetingsIntent, ConstantManager.PERMISSION_REQUEST_SETTINGS_CODE);
     }
+    //Нажатие Floating Button
+    @OnClick(R.id.fab)
+    void onClickFab(){
+        if (mCurrentEditMode == 0) {
+            changeEditMode(1);
+            mCurrentEditMode = 1;
+
+        } else {
+            changeEditMode(0);
+            mCurrentEditMode = 0;
+        }
+    }
+
+    //Нажатие на PlaceHolder
+    @OnClick(R.id.profile_placeholder)
+    void onClickProfilePlaceholder() {
+        showDialog(ConstantManager.LOAD_PROFILE_PHOTO);
+    }
+
     // телефонный вызов
-    private void phoneCall() {
-        String number = mUserPhone.getText().toString();
+    @OnClick(R.id.call_img)
+    void phoneCall() {
+        String number = mUserInfoViews.get(0).getText().toString();
         Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
         startActivity(dialIntent);
     }
     // отправка E mail
-    private void sendEmail() {
-        String[] email = {mUserMail.getText().toString()};
+    @OnClick(R.id.email_img)
+    void sendEmail() {
+        String[] email = {mUserInfoViews.get(1).getText().toString()};
         Intent mailIntent = new Intent(Intent.ACTION_SEND);
         mailIntent.setType("text/html");
         mailIntent.putExtra(Intent.EXTRA_EMAIL, email);
@@ -446,14 +407,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         startActivity(Intent.createChooser(mailIntent, "Send Email"));
     }
     // просмотр страницы в контакте
-    private void goVk(){
-        String vkAddress = mUserVk.getText().toString();
+    @OnClick(R.id.vk_img)
+    void goVk(){
+        String vkAddress = mUserInfoViews.get(2).getText().toString();
         Intent vkBrowse = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + vkAddress));
         startActivity(vkBrowse);
     }
     // просмотр репозитория Github
-    private void goGithub(){
-        String gitAddress = mUserGit.getText().toString();
+    @OnClick(R.id.github_img)
+    void goGithub(){
+        String gitAddress = mUserInfoViews.get(3).getText().toString();
         Intent gitBrowse = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" + gitAddress));
         startActivity(gitBrowse);
     }
